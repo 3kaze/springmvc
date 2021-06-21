@@ -1,20 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: wei
-  Date: 2021/6/19
-  Time: 2:01
+  Date: 2021/6/22
+  Time: 0:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<h1>show</h1>
-<p>user:${user}</p>
-<p>requestScope.user:${requestScope.user}</p>
-<p>sessionScope.user:${sessionScope.user}</p>
+    <form action="<%=request.getContextPath()%>/converter/student" method="post">
+        <input type="text" name="student" />(1-张三-22）<br/>
+        <input type="submit" value="提交" />
+    </form>
 </body>
 </html>

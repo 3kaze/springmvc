@@ -21,14 +21,26 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <mvc:annotation-driven>
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.wzw.converter.DateConverter">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                </bean>
+                <bean class="com.wzw.converter.StudentConverter" />
+            </list>
+        </property>
+    </bean>
+    <mvc:annotation-driven conversion-service="conversionService">
         <!--消息转换器 -->
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
             </bean>
             <!-- fastjson -->
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" />
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <!-- 后面的mvc:annotation-driven会覆盖前面的 -->
+<!--    <mvc:annotation-driven />-->
 </beans>
