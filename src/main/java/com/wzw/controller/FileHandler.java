@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author wei
@@ -40,4 +42,23 @@ public class FileHandler {
         return "upload";
     }
 
+    @PostMapping("/uploads")
+    public String uploads(@RequestParam("imgs") MultipartFile[] imgs, HttpServletRequest request) {
+        List<String> pathList = new ArrayList<>();
+        for (MultipartFile img : imgs) {
+            if (img.getSize() > 0) {
+                String path = request.getSession().getServletContext().getRealPath("file");
+                String fileName = img.getOriginalFilename();
+                File file = new File(path, fileName);
+                try {
+                    img.transferTo(file);
+                    pathList.add(request.getContextPath() + "/file/" + fileName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        request.setAttribute("list", pathList);
+        return "uploads";
+    }
 }
