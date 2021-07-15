@@ -42,6 +42,8 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+<!--    <mvc:annotation-driven validator="studentValidator" />-->
+<!--    <bean id="studentValidator" class="com.wzw.validation.StudentValidation" />-->
     <!-- 后面的mvc:annotation-driven会覆盖前面的 -->
 <!--    <mvc:annotation-driven />-->
 </beans>
