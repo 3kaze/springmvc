@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("/converter")
-public class ConverterHandel {
+public class ConverterHandler {
 
     @RequestMapping("/date")
     @ResponseBody
